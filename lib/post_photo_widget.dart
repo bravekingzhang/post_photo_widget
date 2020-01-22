@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:post_photo_widget/asset_provider.dart';
 
 class PostPhotoView extends StatefulWidget {
@@ -47,31 +48,36 @@ class _PostPhotoViewState extends State<PostPhotoView> {
   Future<void> loadAssets() async {
     List<Asset> resultList = List<Asset>();
     String error = 'No Error Dectected';
+    Map<PermissionGroup, PermissionStatus> _ = await PermissionHandler()
+        .requestPermissions([PermissionGroup.camera,PermissionGroup.mediaLibrary,PermissionGroup.photos]);
+    PermissionStatus permission = await PermissionHandler()
+        .checkPermissionStatus(PermissionGroup.photos);
+    if (permission == PermissionStatus.granted) {
+      try {
+        resultList = await MultiImagePicker.pickImages(
+          maxImages: widget.imageCount,
+          enableCamera: true,
+          selectedAssets: images,
+          cupertinoOptions: CupertinoOptions(takePhotoIcon: "chat"),
+          materialOptions: MaterialOptions(
+            actionBarTitle: "选择照片",
+            allViewTitle: "所有照片",
+            useDetailsView: false,
+            actionBarColor: '#EC407A',
+            statusBarColor: '#EC407A',
+            selectCircleStrokeColor: "#000000",
+          ),
+        );
+      } on Exception catch (e) {
+        error = e.toString();
+      }
+    } else {
 
-    try {
-      resultList = await MultiImagePicker.pickImages(
-        maxImages: widget.imageCount,
-        enableCamera: true,
-        selectedAssets: images,
-        cupertinoOptions: CupertinoOptions(takePhotoIcon: "chat"),
-        materialOptions: MaterialOptions(
-          actionBarTitle: "选择照片",
-          allViewTitle: "所有照片",
-          useDetailsView: false,
-          actionBarColor: '#EC407A',
-          statusBarColor: '#EC407A',
-          selectCircleStrokeColor: "#000000",
-        ),
-      );
-    } on Exception catch (e) {
-      error = e.toString();
     }
-
     // If the widget was removed from the tree while the asynchronous platform
     // message was in flight, we want to discard the reply rather than calling
     // setState to update our non-existent appearance.
     if (!mounted) return;
-
     setState(() {
       images = resultList;
       _error = error;
