@@ -4,11 +4,42 @@ A new Flutter plugin that can send photos similar to WeChat moments 发送微信
 
 ## Getting Started
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+![](https://github.com/bravekingzhang/post_photo_widget/blob/master/device-2020-01-22-172925.png)
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+```dart
+import 'package:flutter/material.dart';
+import 'dart:async';
+
+import 'package:flutter/services.dart';
+import 'package:post_photo_widget/post_photo_widget.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('类微信朋友圈发送器'),
+        ),
+        body: PostPhotoView(
+          addImgSrc: 'images/zhaopian_add_2x.png',
+          widthPadding: 30,
+        ),
+      ),
+    );
+  }
+}
+```

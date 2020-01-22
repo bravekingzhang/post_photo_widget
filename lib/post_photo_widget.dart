@@ -63,8 +63,6 @@ class _PostPhotoViewState extends State<PostPhotoView> {
             actionBarTitle: "选择照片",
             allViewTitle: "所有照片",
             useDetailsView: false,
-            actionBarColor: '#EC407A',
-            statusBarColor: '#EC407A',
             selectCircleStrokeColor: "#000000",
           ),
         );
