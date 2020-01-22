@@ -1,8 +1,7 @@
 name: post_photo_widget
 description: A new Flutter plugin that can send photos similar to WeChat moments 发送微信朋友圈九宫格照片
 version: 0.0.1
-author:
-homepage:
+homepage: https://github.com/bravekingzhang/post_photo_widget
 
 environment:
   sdk: ">=2.3.0 <3.0.0"
