@@ -28,6 +28,7 @@ class _MyAppState extends State<MyApp> {
           imageChooseCallback: (images){
             //上传图片参考https://sh1d0w.github.io/multi_image_picker/#/upload
             List<Asset> imageList = images;
+            print('监控到${imageList.length}张图片');
           },
         ),
       ),

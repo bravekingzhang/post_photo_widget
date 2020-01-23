@@ -132,6 +132,7 @@ class _PostPhotoViewState extends State<PostPhotoView> {
             onTap: () {
               setState(() {
                 images.remove(asset);
+                widget.imageChooseCallback(images);
               });
             },
             child: CircleAvatar(
