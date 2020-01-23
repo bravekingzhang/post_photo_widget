@@ -1,6 +1,7 @@
 name: post_photo_widget_example
 description: Demonstrates how to use the post_photo_widget plugin.
 publish_to: 'none'
+version: 0.0.1
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -8,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  permission_handler: ^4.1.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
